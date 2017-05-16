@@ -32,6 +32,15 @@ if [ ! -z "$ADVERTISED_PORT" ]; then
     fi
 fi
 
+# enable the security for the kafka
+echo "ssl.keystore.location=/opt/private/ssl/server.keystore.jks" >> $KAFKA_HOME/config/server.properties
+echo "ssl.keystore.password=test1234" >> $KAFKA_HOME/config/server.properties
+echo "ssl.key.password=test1234" >> $KAFKA_HOME/config/server.properties
+echo "ssl.truststore.location=/opt/private/ssl/server.truststore.jks" >> $KAFKA_HOME/config/server.properties
+echo "ssl.truststore.password=test1234" >> $KAFKA_HOME/config/server.properties
+echo "security.inter.broker.protocol=SSL" >> $KAFKA_HOME/config/server.properties
+
+
 # Set the zookeeper chroot
 if [ ! -z "$ZK_CHROOT" ]; then
     # wait for zookeeper to start up
