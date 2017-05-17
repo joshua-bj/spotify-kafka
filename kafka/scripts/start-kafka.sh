@@ -33,6 +33,8 @@ if [ ! -z "$ADVERTISED_PORT" ]; then
 fi
 
 # enable the security for the kafka
+echo "listeners=SSL://:$ADVERTISED_PORT" >> $KAFKA_HOME/config/server.properties
+echo "advertised.listeners=SSL://$ADVERTISED_HOST:$ADVERTISED_PORT" >> $KAFKA_HOME/config/server.properties
 echo "ssl.keystore.location=/opt/private/ssl/server.keystore.jks" >> $KAFKA_HOME/config/server.properties
 echo "ssl.keystore.password=test1234" >> $KAFKA_HOME/config/server.properties
 echo "ssl.key.password=test1234" >> $KAFKA_HOME/config/server.properties
